@@ -1,11 +1,18 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Button, Layout, Modal, Row} from "antd";
 import EventCalendar from "../components/EventCalendar";
 import EventForm from "../components/EventForm";
+import {useActions} from "../hooks/useActions";
+import {userTypedSelector} from "../hooks/userTypedSelector";
 
 const Event :FC = () => {
 
     const [modalVisible, setModalVisible] = useState(false)
+    const  { fetchGuests } = useActions()
+    const { guests } = userTypedSelector(state => state.event)
+    useEffect(() => {
+        fetchGuests()
+    },[fetchGuests])
 
     return (
         <Layout>
@@ -23,7 +30,9 @@ const Event :FC = () => {
                 footer={null}
                 onCancel={() => setModalVisible(false)}
             >
-               <EventForm/>
+               <EventForm
+                   guests={guests}
+               />
 
             </Modal>
         </Layout>
