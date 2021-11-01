@@ -2,13 +2,13 @@ import React, {FC} from 'react';
 import {Layout, Menu, Row} from "antd";
 import {useHistory} from "react-router-dom";
 import {RouteNames} from "../router";
-import {userTypedSelector} from "../hooks/userTypedSelector";
+import {useTypedSelector} from "../hooks/userTypedSelector";
 import {useActions} from "../hooks/useActions";
 
 const Navbar: FC = () => {
 
     const router =useHistory()
-    const { isAuth , user} = userTypedSelector(state => state.auth)
+    const { isAuth , user} = useTypedSelector(state => state.auth)
     const { loginOut } = useActions()
     return (
         <Layout.Header>

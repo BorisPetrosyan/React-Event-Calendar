@@ -1,12 +1,12 @@
 import React, {FC, useState} from 'react';
 import {Form, Input,Button} from 'antd'
 import { rules } from '../utils/rules';
-import { userTypedSelector } from "../hooks/userTypedSelector";
+import { useTypedSelector } from "../hooks/userTypedSelector";
 import {useActions} from "../hooks/useActions";
 
 const LoginForm: FC = () => {
 
-    const {error,isLoading} = userTypedSelector(state => state.auth)
+    const {error,isLoading} = useTypedSelector(state => state.auth)
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
 
